@@ -1,0 +1,53 @@
+DEF FUNCTION saisir() : string
+VAR
+   ch:string[]:="";
+   c:char;
+   
+    
+BEGIN
+      write ("entrez c : ");
+      write (c);
+       WHILE (c<>'.') DO
+        ch:=ch+c;
+        write(c);   
+        END_WHILE
+        ch:=ch+'.'
+       RETURN ch ;
+          
+END
+DEF FUNCTION compter_Mot(ch:string) : integer 
+VAR
+    i,sum:integer;
+    sum:=1;
+BEGIN
+    FOR i FROM 0 TO length(ch)-1 STEP 1  DO
+        IF ((ch[i]=" ")AND (ch[i+1]<>" ")) THEN
+            sum:=sum+1;
+        END_IF
+    END_FOR
+  
+    RETURN sum ;
+END
+DEF FUNCTION compter_voyelles (ch:string) : integer
+VAR
+    i,sum:integer;
+    sum:=0;
+BEGIN
+    FOR i FROM 0 TO length(ch)-1 STEP 1  DO
+        IF ((ch[i]in {A,E,O,U,Y,I})OR(ch[i]in ToLower{A,E,O,U,Y,I})) THEN
+            sum:=sum+1
+        END_IF
+    END_FOR
+    RETURN sum ;
+END
+
+ALGORITHM checkpoint
+VAR
+    ch:string;
+    L,Sum,Sum1:integer
+BEGIN
+    ch:=saisir();
+    L:=length(ch);
+    Sum:=compter_Mot(ch);
+    Sum1:=compter_voyelles (ch);
+END
